@@ -1,6 +1,6 @@
 from flask import request, redirect, url_for, render_template, flash
 from sensai import app, db
-from sensai.models import Menu
+from sensai.models import Game
 import random
 
 @app.route('/')
@@ -12,29 +12,20 @@ def get_menus():
 
     # params
     menus = []
-    text = "サイゼリヤ1000円ガチャを回したよ！" + "\n" + "\n"
-    money = 1000
-    budget = money
-    calorie = 0
-    salt = 0
+    budget = 10000
 
     # select first food
     while not menus:
-        rand = random.randrange(0, db.session.query(Menu.id).count()) + 1
-        menus = db.session.query(Menu).filter(Menu.id==rand, Menu.price <= budget).all()
+        rand = random.randrange(0, db.session.query(Game.id).count()) + 1
+        menus = db.session.query(Game).filter(Game.id==rand, Game.price <= budget).all()
 
     # calc
     budget -= int(menus[0].price)
-    calorie += int(menus[0].calorie)
-    salt += float(menus[0].salt)
-
-    #add text for tweet
-    text += str(menus[0].name) + "\n"
 
     while budget > 0:
 
         # avalable food candidate
-        candidate = db.session.query(Menu).filter(Menu.price <= budget).all()
+        candidate = db.session.query(Game).filter(Game.price <= budget).all()
 
         # no candidate break
         if not candidate:
@@ -46,21 +37,9 @@ def get_menus():
         # add to list
         menus.append(candidate[rand])
 
-        #add text for tweet
-        text += str(candidate[rand].name) + "\n"
-
         #calc
         budget -= int(candidate[rand].price)
-        calorie += int(candidate[rand].calorie)
-        salt += float(candidate[rand].salt)
 
-
-    budget = money - budget
-
-    # tweet result
-    text += "\n"
-    text += "計 " + str(budget) + "円 " + str(calorie) + "kcal 塩分 " + str(round(salt,1)) + "g" + "\n" + "\n"
-
-    return render_template('show_menus.html', menus=menus, budget=budget, calorie=calorie, salt=round(salt,1), text=text)
+    return render_template('show_menus.html', menus=menus, budget=budget)
 
 import random

@@ -15,19 +15,15 @@
     {% for menu in menus %}
     <div class="box menu">
       <h2>{{ menu.name }}</h2>
-        <p>{{ menu.price }}円　{{ menu.calorie }}kcal　塩分 {{ menu.salt }}g<p>
+        <p>{{ menu.price }}円<p>
     </div>
     {% else %}
     {% endfor %}
     {% if menus %}
     <div class="box rst">
-      <h2>計 {{ budget }}円　{{ calorie }}kcal　塩分 {{ salt }}g</h2>
+      <h2>計 {{ 10000 - budget }}円</h2>
     </div>
     {% endif %}
 
-  </div>
-
-  <div class="footer">
-    <a href="https://twitter.com/share" class="twitter-share-button"  data-url="https://saizeriya-1000yen.herokuapp.com/" data-text="{{ text }}" data-lang="ja" data-count="horizontal" data-hashtags="サイゼリヤガチャ" data-size="large">Tweet</a>
   </div>
 {% endblock %}

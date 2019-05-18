@@ -1,6 +1,6 @@
 body {
   font-family: 'ヒラギノ角ゴシック','Hiragino Sans',YuGothic,'Yu Gothic',sans-serif;
-  background: #007c00;
+  background: #aed657;
 }
 
 h1, h2 {
@@ -10,13 +10,13 @@ h1, h2 {
 .page {
   margin: 2em auto;
   width: 35em;
-  border: 5px double #007c00;
+  border: 5px double #aed657;
   padding: 1em;
   background: white;
 }
 
 .heading {
-  border-bottom: 2px solid #007c00;
+  border-bottom: 2px solid #aed657;
   text-align: center;
   margin-bottom: 1em;
   padding-bottom: 1em;
@@ -44,7 +44,7 @@ h1, h2 {
   text-decoration: none;
   background: rgba(0,124,0,0.8);
   color: #ffffff;
-  border-bottom: solid 4px #007c00;
+  border-bottom: solid 4px #aed657;
   border-radius: 3px;
 }
 

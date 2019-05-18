@@ -14,7 +14,7 @@
   <div class="result">
     {% for menu in menus %}
     <div class="box menu">
-      <h2>{{ menu.name }}</h2>
+      <a href= {{menu.url}} target="_blank"><h2>{{ menu.name }}</h2></a>
         <p>{{ menu.price }}円<p>
     </div>
     {% else %}

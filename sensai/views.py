@@ -13,6 +13,9 @@ def get_menus():
     # params
     menus = []
     budget = 10000
+    text = "ゲムマ10000円ガチャの結果！" + "\n" + "\n"
+    money = 10000
+    budget = money
 
     # select first food
     while not menus:
@@ -21,6 +24,9 @@ def get_menus():
 
     # calc
     budget -= int(menus[0].price)
+
+    #add text for tweet
+    text += str(menus[0].name) + "\n"
 
     while budget > 0:
 
@@ -37,9 +43,16 @@ def get_menus():
         # add to list
         menus.append(candidate[rand])
 
+        #add text for tweet
+        text += str(candidate[rand].name) + "\n"
+
         #calc
         budget -= int(candidate[rand].price)
 
-    return render_template('show_menus.html', menus=menus, budget=budget)
+    # tweet result
+    budget = money - budget
+    text += "\n"
+    text += "計 " + str(budget) + "円 " + "\n" + "\n"
+    return render_template('show_menus.html', menus=menus, budget=budget, text=text)
 
 import random

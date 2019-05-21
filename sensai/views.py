@@ -12,9 +12,9 @@ def get_menus():
 
     # params
     menus = []
-    budget = 10000
-    text = "ゲムマ10000円ガチャの結果！" + "\n" + "\n"
-    money = 10000
+    budget = 2000
+    text = "ゲムマ2000円ガチャの結果！" + "\n" + "\n"
+    money = 2000
     budget = money
 
     # select first food
